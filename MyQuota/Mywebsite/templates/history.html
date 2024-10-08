@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<h2 class="text-center mt-3 mb-3">วิชาที่ลงทะเบียน</h2>
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Subject</th>
+      <th scope="col">Year</th>
+      <th scope="col">Semester</th>
+      <th scope="col">Status</th>
+      <th scope="col">Cancel</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for enrollment in all_enrollment %}
+      <tr>
+        <td scope="row">{{enrollment.quota.Subject}}</td>
+        <td>{{enrollment.quota.Year}}</td>
+        <td>{{enrollment.quota.Semester}}</td>
+        <td scope="col">{{enrollment.approve}}</td>
+        <td>
+          <form action="{% url 'cancel_quota' %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="subject_id" value="{{ enrollment.quota.id }}">
+            <input type="submit" value="ยกเลิกการขอลงทะเบียน" class="btn btn-light">
+      </form></td>
+      </tr>
+      {% endfor %}
+      {% if messages %}
+      {% for message in messages %}
+      <div class = 'alert alert-success' role = 'alert'>
+          <strong>{{message}}</strong>
+      </div>
+      {% endfor %}
+  {% endif %}
+  <script>setTimeout(function() {
+      const alert = document.querySelector('.alert');
+      if (alert) {
+          alert.style.transition = "opacity 0.5s ease";
+          alert.style.opacity = 0;
+          setTimeout(function() {
+              alert.remove();
+          }, 500);
+      }
+  }, 3000);</script>
+  </tbody>
+</table>
+{% endblock %}
