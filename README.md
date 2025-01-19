@@ -1,1 +1,1 @@
-# Portfolio
+### rmt stands for "Remind Me There", it's a mobile application that uses GPS and notifications to alert users in their daily life. Our application has 2 modes that send notifications to users. The first mode is set to TIME and works like an alarm clock, reminding users what they should do at the marked time. The second mode is the LOCATION mode. It uses GPS and allows users to mark the desired location, e.g. a store. When the users approach the marked location, a notification is sent to the users so that they don't forget what to do at the marked location.
